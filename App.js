@@ -5,7 +5,12 @@ import FormCadastro from './src/Screens/FormCadastro';
 
 export default createStackNavigator(
   {
-    Home: FormLogin,
+    Home: {
+      screen: FormLogin,
+      navigationOptions: () => ({
+        header: null,
+      }),
+    },
     Cadastro: FormCadastro,
   },
   {
