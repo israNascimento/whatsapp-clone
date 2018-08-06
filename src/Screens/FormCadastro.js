@@ -3,7 +3,7 @@ import {
   StyleSheet, View, TextInput, Button,
 } from 'react-native';
 
-export default () => (
+const FormCadastro = () => (
   <View style={styles.container}>
     <View style={styles.form}>
       <TextInput placeholder="Nome" style={styles.input} />
@@ -16,6 +16,16 @@ export default () => (
     </View>
   </View>
 );
+
+FormCadastro.navigationOptions = {
+  title: 'Cadastro',
+  headerStyle: {
+    backgroundColor: '#115E54',
+  },
+  headerTintColor: '#fff',
+};
+
+export default FormCadastro;
 
 const styles = StyleSheet.create({
   container: {
