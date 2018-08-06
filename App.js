@@ -1,6 +1,11 @@
-import React from 'react';
+import { createStackNavigator } from 'react-navigation';
 import FormLogin from './src/Screens/FormLogin';
+import FormCadastro from './src/Screens/FormCadastro';
 
-export default () => (
-  <FormLogin />
+
+export default createStackNavigator(
+  {
+    Home: FormLogin,
+    Cadastro: FormCadastro,
+  },
 );
