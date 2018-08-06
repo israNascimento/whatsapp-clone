@@ -1,31 +1,49 @@
 import React from 'react';
 import {
-  StyleSheet, Text, View, TextInput, Button,
+  StyleSheet, Text, View, TextInput, Button, TouchableNativeFeedback,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
-export default () => (
-  <View style={styles.container}>
-    <View style={styles.top}>
-      <Text style={styles.textTop}>
-        Whatsapp clone
-      </Text>
-    </View>
-    <View style={styles.form}>
-      <TextInput placeholder="Email" style={styles.input} />
-      <TextInput placeholder="Senha" style={styles.input} />
-    </View>
-    <View style={styles.bottom}>
-      <Button title="Entrar" color="#115E54" onPress={() => null} />
-      <Text style={styles.signup}>
-        Ainda não está cadastrado?
-        <Text style={styles.signupbutton}>
-          {' '}
-          Clique aqui
+const FormLogin = (props) => {
+  const { navigation } = props;
+  return (
+    <View style={styles.container}>
+      <View style={styles.top}>
+        <Text style={styles.textTop}>
+          Whatsapp clone
         </Text>
-      </Text>
+      </View>
+      <View style={styles.form}>
+        <TextInput placeholder="Email" style={styles.input} />
+        <TextInput placeholder="Senha" style={styles.input} />
+      </View>
+      <View style={styles.bottom}>
+        <Button title="Entrar" color="#115E54" onPress={() => null} />
+        <View style={styles.textWrapper}>
+          <Text style={styles.signup}>
+            Ainda não está cadastrado?
+          </Text>
+          <TouchableNativeFeedback
+            onPress={() => { navigation.navigate('Cadastro'); }}
+          >
+            <Text style={[styles.signup, styles.signupbutton]}>
+              {' '}
+              Clique aqui
+            </Text>
+          </TouchableNativeFeedback>
+        </View>
+      </View>
     </View>
-  </View>
-);
+  );
+};
+
+FormLogin.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+export default FormLogin;
 
 const styles = StyleSheet.create({
   container: {
@@ -54,6 +72,10 @@ const styles = StyleSheet.create({
 
   bottom: {
     flex: 2,
+  },
+  textWrapper: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
   },
   signup: {
     marginTop: 10,

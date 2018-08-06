@@ -8,4 +8,7 @@ export default createStackNavigator(
     Home: FormLogin,
     Cadastro: FormCadastro,
   },
+  {
+    initialRouteName: 'Home',
+  },
 );
