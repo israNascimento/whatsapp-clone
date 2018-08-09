@@ -1,9 +1,13 @@
+import React from 'react';
 import { createStackNavigator } from 'react-navigation';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+import Reducers from './src/Reducers';
 import FormLogin from './src/Screens/FormLogin';
 import FormCadastro from './src/Screens/FormCadastro';
 
-
-export default createStackNavigator(
+const RootStack = createStackNavigator(
   {
     Home: {
       screen: FormLogin,
@@ -16,4 +20,10 @@ export default createStackNavigator(
   {
     initialRouteName: 'Home',
   },
+);
+
+export default () => (
+  <Provider store={createStore(Reducers)}>
+    <RootStack />
+  </Provider>
 );
