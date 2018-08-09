@@ -25,7 +25,7 @@ const FormLogin = (props) => {
             Ainda não está cadastrado?
           </Text>
           <TouchableNativeFeedback
-            onPress={() => { navigation.navigate('Cadastro'); }}
+            onPress={() => { navigation.navigate('Signup'); }}
           >
             <Text style={[styles.signup, styles.signupbutton]}>
               {' '}

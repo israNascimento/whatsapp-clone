@@ -5,7 +5,7 @@ import { createStore } from 'redux';
 
 import Reducers from './src/Reducers';
 import FormLogin from './src/Screens/FormLogin';
-import FormCadastro from './src/Screens/FormCadastro';
+import FormSignup from './src/Screens/FormSignup';
 
 const RootStack = createStackNavigator(
   {
@@ -15,7 +15,7 @@ const RootStack = createStackNavigator(
         header: null,
       }),
     },
-    Cadastro: FormCadastro,
+    Signup: FormSignup,
   },
   {
     initialRouteName: 'Home',
