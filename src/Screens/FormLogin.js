@@ -4,9 +4,10 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { changeEmail, changePass } from '../Actions/AuthAction';
 
 const FormLogin = (props) => {
-  const { navigation, email, senha } = props;
+  const { navigation, email, pass } = props;
   return (
     <View style={styles.container}>
       <View style={styles.top}>
@@ -15,8 +16,19 @@ const FormLogin = (props) => {
         </Text>
       </View>
       <View style={styles.form}>
-        <TextInput placeholder="Email" value={email} style={styles.input} />
-        <TextInput placeholder="Senha" value={senha} style={styles.input} />
+        <TextInput
+          placeholder="Email"
+          onChangeText={text => props.changeEmail(text)}
+          value={email}
+          style={styles.input}
+        />
+        <TextInput
+          placeholder="Senha"
+          onChangeText={text => props.changePass(text)}
+          secureTextEntry
+          value={pass}
+          style={styles.input}
+        />
       </View>
       <View style={styles.bottom}>
         <Button title="Entrar" color="#115E54" onPress={() => null} />
@@ -42,22 +54,24 @@ FormLogin.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+  changeEmail: PropTypes.func.isRequired,
+  changePass: PropTypes.func.isRequired,
   email: PropTypes.string,
-  senha: PropTypes.string,
+  pass: PropTypes.string,
 };
 
 FormLogin.defaultProps = {
   email: '',
-  senha: '',
+  pass: '',
 };
 
 const mapStateToProps = state => (
   {
     email: state.auth.email,
-    senha: state.auth.senha,
+    pass: state.auth.pass,
   }
 );
-export default connect(mapStateToProps, null)(FormLogin);
+export default connect(mapStateToProps, { changeEmail, changePass })(FormLogin);
 
 const styles = StyleSheet.create({
   container: {
