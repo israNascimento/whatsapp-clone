@@ -1,5 +1,5 @@
 const INITIAL_DATA = {
-  nome: '',
+  name: '',
   email: '',
   pass: '',
 };
