@@ -56,13 +56,8 @@ FormLogin.propTypes = {
   }).isRequired,
   changeEmail: PropTypes.func.isRequired,
   changePass: PropTypes.func.isRequired,
-  email: PropTypes.string,
-  pass: PropTypes.string,
-};
-
-FormLogin.defaultProps = {
-  email: '',
-  pass: '',
+  email: PropTypes.string.isRequired,
+  pass: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => (
