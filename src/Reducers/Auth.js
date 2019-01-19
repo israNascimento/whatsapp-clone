@@ -11,5 +11,8 @@ export default (state = INITIAL_DATA, action) => {
   if (action.type === 'change_pass') {
     return { ...state, pass: action.payload };
   }
+  if (action.type === 'change_name') {
+    return { ...state, name: action.payload };
+  }
   return state;
 };

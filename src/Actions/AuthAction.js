@@ -7,3 +7,8 @@ export const changePass = newPass => ({
   type: 'change_pass',
   payload: newPass,
 });
+
+export const changeName = newName => ({
+  type: 'change_name',
+  payload: newName,
+});
