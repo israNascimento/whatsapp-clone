@@ -2,9 +2,11 @@ const INITIAL_DATA = {
   name: '',
   email: '',
   pass: '',
+  errorMessage: '',
 };
 
 export default (state = INITIAL_DATA, action) => {
+  console.log(action);
   if (action.type === 'change_email') {
     return { ...state, email: action.payload };
   }
@@ -13,6 +15,9 @@ export default (state = INITIAL_DATA, action) => {
   }
   if (action.type === 'change_name') {
     return { ...state, name: action.payload };
+  }
+  if (action.type === 'register_error') {
+    return { ...state, errorMessage: action.payload };
   }
   return state;
 };

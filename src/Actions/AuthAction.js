@@ -1,4 +1,4 @@
-// import firebase from 'firebase';
+import firebase from 'firebase';
 
 export const changeEmail = newEmail => ({
   type: 'change_email',
@@ -15,12 +15,10 @@ export const changeName = newName => ({
   payload: newName,
 });
 
-export const registerUser = (user) => {
-  console.log(user);
-  /* firebase.auth().createUserWithEmailAndPassword(user.email, user.pass)
-    .then(suc => console.log(suc))
-    .catch(err => console.log(err)); */
-  return {
-    type: 'Hi',
-  };
-};
+export const registerUser = user => (
+  (dispatch) => {
+    firebase.auth().createUserWithEmailAndPassword(user.email, user.pass)
+      .then(suc => dispatch({ type: 'sucess', payload: suc }))
+      .catch(err => dispatch({ type: 'register_error', payload: err.message }));
+  }
+);

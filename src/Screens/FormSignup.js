@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, TextInput, Button,
+  StyleSheet, View, TextInput, Button, Text,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -14,7 +14,9 @@ class FormCadastro extends Component {
   }
 
   render() {
-    const { name, email, pass } = this.props;
+    const {
+      name, email, pass, errorMessage,
+    } = this.props;
     const { changeName, changeEmail, changePass } = this.props;
     return (
       <View style={styles.container}>
@@ -34,10 +36,11 @@ class FormCadastro extends Component {
           <TextInput
             value={pass}
             placeholder="Senha"
+            secureTextEntry
             style={styles.input}
             onChangeText={newPass => changePass(newPass)}
           />
-          <TextInput placeholder="Confirme sua senha" style={styles.input} />
+          <Text style={styles.error}>{errorMessage}</Text>
         </View>
         <View style={styles.bottom}>
           <Button
@@ -64,6 +67,7 @@ const mapStateToProps = state => (
     name: state.auth.name,
     email: state.auth.email,
     pass: state.auth.pass,
+    errorMessage: state.auth.errorMessage,
   }
 );
 
@@ -78,6 +82,7 @@ FormCadastro.propTypes = {
   changePass: PropTypes.func.isRequired,
   changeName: PropTypes.func.isRequired,
   registerUser: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, {
@@ -110,6 +115,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   signupbutton: {
+    fontWeight: 'bold',
+  },
+  error: {
+    color: '#F00',
+    fontSize: 15,
     fontWeight: 'bold',
   },
 });
