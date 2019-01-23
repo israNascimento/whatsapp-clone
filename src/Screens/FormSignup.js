@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet, View, TextInput, Button,
 } from 'react-native';
@@ -6,37 +6,50 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as Actions from '../Actions/AuthAction';
 
-const FormCadastro = (props) => {
-  const { name, email, pass } = props;
-  return (
-    <View style={styles.container}>
-      <View style={styles.form}>
-        <TextInput
-          value={name}
-          placeholder="Nome"
-          style={styles.input}
-          onChangeText={newName => props.changeName(newName)}
-        />
-        <TextInput
-          value={email}
-          placeholder="Email"
-          style={styles.input}
-          onChangeText={newEmaill => props.changeEmail(newEmaill)}
-        />
-        <TextInput
-          value={pass}
-          placeholder="Senha"
-          style={styles.input}
-          onChangeText={newPass => props.changePass(newPass)}
-        />
-        <TextInput placeholder="Confirme sua senha" style={styles.input} />
+class FormCadastro extends Component {
+  caal() {
+    const { name, email, pass } = this.props;
+    const { registerUser } = this.props;
+    registerUser({ name, email, pass });
+  }
+
+  render() {
+    const { name, email, pass } = this.props;
+    const { changeName, changeEmail, changePass } = this.props;
+    return (
+      <View style={styles.container}>
+        <View style={styles.form}>
+          <TextInput
+            value={name}
+            placeholder="Nome"
+            style={styles.input}
+            onChangeText={newName => changeName(newName)}
+          />
+          <TextInput
+            value={email}
+            placeholder="Email"
+            style={styles.input}
+            onChangeText={newEmaill => changeEmail(newEmaill)}
+          />
+          <TextInput
+            value={pass}
+            placeholder="Senha"
+            style={styles.input}
+            onChangeText={newPass => changePass(newPass)}
+          />
+          <TextInput placeholder="Confirme sua senha" style={styles.input} />
+        </View>
+        <View style={styles.bottom}>
+          <Button
+            title="Cadastrar"
+            color="#115E54"
+            onPress={() => this.caal()}
+          />
+        </View>
       </View>
-      <View style={styles.bottom}>
-        <Button title="Cadastrar" color="#115E54" onPress={() => null} />
-      </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 FormCadastro.navigationOptions = {
   title: 'Cadastro',
@@ -64,12 +77,14 @@ FormCadastro.propTypes = {
   changeEmail: PropTypes.func.isRequired,
   changePass: PropTypes.func.isRequired,
   changeName: PropTypes.func.isRequired,
+  registerUser: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, {
   changeEmail: Actions.changeEmail,
   changeName: Actions.changeName,
   changePass: Actions.changePass,
+  registerUser: Actions.registerUser,
 })(FormCadastro);
 
 const styles = StyleSheet.create({
