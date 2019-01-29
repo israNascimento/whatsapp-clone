@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import thunk from 'redux-thunk';
 
+import NavigationService from './src/NavigationService';
 import Reducers from './src/Reducers';
 import FormLogin from './src/Screens/FormLogin';
 import FormSignup from './src/Screens/FormSignup';
@@ -25,6 +26,8 @@ const RootStack = createStackNavigator(
   },
 );
 
+const AppContainer = createAppContainer(RootStack);
+
 class App extends Component {
   componentWillMount() {
     const config = {
@@ -41,7 +44,11 @@ class App extends Component {
   render() {
     return (
       <Provider store={createStore(Reducers, {}, applyMiddleware(thunk))}>
-        <RootStack />
+        <AppContainer
+          ref={(navigatorRef) => {
+            NavigationService.setTopLevelNavigator(navigatorRef);
+          }}
+        />
       </Provider>
     );
   }
