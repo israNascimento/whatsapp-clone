@@ -19,5 +19,8 @@ export default (state = INITIAL_DATA, action) => {
   if (action.type === 'register_error') {
     return { ...state, errorMessage: action.payload };
   }
+  if (action.type === 'register_sucess') {
+    return { ...state };
+  }
   return state;
 };

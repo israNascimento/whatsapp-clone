@@ -18,7 +18,14 @@ export const changeName = newName => ({
 export const registerUser = user => (
   (dispatch) => {
     firebase.auth().createUserWithEmailAndPassword(user.email, user.pass)
-      .then(suc => dispatch({ type: 'sucess', payload: suc }))
+      .then((sucess) => {
+        console.log(sucess);
+        firebase.database().ref(`/contatos/users/${sucess.user.uid}`)
+          .push({ email: user.email, name: user.name }).then((val) => {
+            console.log(val);
+            dispatch({ type: 'register_sucess' });
+          });
+      })
       .catch(err => dispatch({ type: 'register_error', payload: err.message }));
   }
 );
