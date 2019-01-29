@@ -40,6 +40,13 @@ class FormCadastro extends Component {
             style={styles.input}
             onChangeText={newPass => changePass(newPass)}
           />
+          <TextInput
+            value={pass}
+            placeholder="Confirme sua senha"
+            secureTextEntry
+            style={styles.input}
+            onChangeText={newPass => changePass(newPass)}
+          />
           <Text style={styles.error}>{errorMessage}</Text>
         </View>
         <View style={styles.bottom}>
