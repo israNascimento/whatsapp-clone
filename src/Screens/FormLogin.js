@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet, Text, View, TextInput, Button, TouchableNativeFeedback,
+  ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,9 +11,20 @@ import { changeEmail, changePass, loginAction } from '../Actions/AuthAction';
 
 class FormLogin extends Component {
   login() {
-    console.log('IO');
     const { email, pass, authLogin } = this.props;
     authLogin({ email, pass });
+  }
+
+  isLoading() {
+    const { isLoading } = this.props;
+    if (isLoading) {
+      return (
+        <ActivityIndicator />
+      );
+    }
+    return (
+      <Button title="Entrar" color="#115E54" onPress={() => this.login()} />
+    );
   }
 
   render() {
@@ -44,9 +56,7 @@ class FormLogin extends Component {
         </View>
         <View style={styles.bottom}>
           <Text style={defaultStyle.errorMessage}>{errorMessage}</Text>
-
-          <Button title="Entrar" color="#115E54" onPress={() => this.login()} />
-
+          { this.isLoading() }
           <View style={styles.textWrapper}>
             <Text style={styles.signup}>
               Ainda não está cadastrado?
@@ -76,6 +86,7 @@ FormLogin.propTypes = {
   email: PropTypes.string.isRequired,
   pass: PropTypes.string.isRequired,
   errorMessage: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -83,6 +94,7 @@ const mapStateToProps = state => (
     email: state.auth.email,
     pass: state.auth.pass,
     errorMessage: state.auth.errorMessageSignin,
+    isLoading: state.auth.isLoading,
   }
 );
 export default connect(mapStateToProps, {

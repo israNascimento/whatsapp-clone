@@ -6,6 +6,7 @@ const INITIAL_DATA = {
   pass: '',
   errorMessageSignup: '',
   errorMessageSignin: '',
+  isLoading: false,
 };
 
 export default (state = INITIAL_DATA, action) => {
@@ -17,9 +18,11 @@ export default (state = INITIAL_DATA, action) => {
     case Constants.CHANGE_NAME:
       return { ...state, name: action.payload };
     case Constants.REGISTER_ERROR:
-      return { ...state, errorMessageSignup: action.payload };
+      return { ...state, errorMessageSignup: action.payload, isLoading: false };
     case Constants.LOGIN_ERROR:
-      return { ...state, errorMessageSignin: action.payload };
+      return { ...state, errorMessageSignin: action.payload, isLoading: false };
+    case Constants.IS_LOADING:
+      return { ...state, isLoading: true };
     default:
       return state;
   }

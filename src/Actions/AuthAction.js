@@ -37,6 +37,7 @@ export const registerUser = user => (
 
 export const loginAction = user => (
   (dispatch) => {
+    dispatch({ type: Constants.IS_LOADING });
     firebase.auth().signInWithEmailAndPassword(user.email, user.pass)
       .then(sucess => dispatch({ type: 'login', payload: sucess }))
       .catch(err => dispatch({
