@@ -1,3 +1,5 @@
+import * as Constants from '../Constants/AuthConst';
+
 const INITIAL_DATA = {
   name: '',
   email: '',
@@ -8,15 +10,15 @@ const INITIAL_DATA = {
 
 export default (state = INITIAL_DATA, action) => {
   switch (action.type) {
-    case 'change_email':
+    case Constants.CHANGE_EMAIL:
       return { ...state, email: action.payload };
-    case 'change_pass':
+    case Constants.CHANGE_PASS:
       return { ...state, pass: action.payload };
-    case 'change_name':
+    case Constants.CHANGE_NAME:
       return { ...state, name: action.payload };
-    case 'register_error':
+    case Constants.REGISTER_ERROR:
       return { ...state, errorMessageSignup: action.payload };
-    case 'login_error':
+    case Constants.LOGIN_ERROR:
       return { ...state, errorMessageSignin: action.payload };
     default:
       return state;

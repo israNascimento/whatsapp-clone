@@ -1,18 +1,19 @@
 import firebase from 'firebase';
 import Navigator from '../NavigationService';
+import * as Constants from '../Constants/AuthConst';
 
 export const changeEmail = newEmail => ({
-  type: 'change_email',
+  type: Constants.CHANGE_EMAIL,
   payload: newEmail,
 });
 
 export const changePass = newPass => ({
-  type: 'change_pass',
+  type: Constants.CHANGE_PASS,
   payload: newPass,
 });
 
 export const changeName = newName => ({
-  type: 'change_name',
+  type: Constants.CHANGE_NAME,
   payload: newName,
 });
 
@@ -27,7 +28,10 @@ export const registerUser = user => (
             Navigator.navigate('Home');
           });
       })
-      .catch(err => dispatch({ type: 'register_error', payload: err.message }));
+      .catch(err => dispatch({
+        type: Constants.REGISTER_ERROR,
+        payload: err.message,
+      }));
   }
 );
 
@@ -35,6 +39,9 @@ export const loginAction = user => (
   (dispatch) => {
     firebase.auth().signInWithEmailAndPassword(user.email, user.pass)
       .then(sucess => dispatch({ type: 'login', payload: sucess }))
-      .catch(err => dispatch({ type: 'login_error', payload: err.message }));
+      .catch(err => dispatch({
+        type: Constants.LOGIN_ERROR,
+        payload: err.message,
+      }));
   }
 );
