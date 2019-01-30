@@ -24,6 +24,8 @@ export default (state = INITIAL_DATA, action) => {
         errorMessageSignup: action.payload,
         isLoadingSignup: false,
       };
+    case Constants.SUCCESS:
+      return { ...state, isLoadingSignup: false, isLoadingSignin: false };
     case Constants.LOGIN_ERROR:
       return {
         ...state,

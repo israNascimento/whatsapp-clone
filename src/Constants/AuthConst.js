@@ -5,3 +5,4 @@ export const REGISTER_ERROR = 'register_error';
 export const LOGIN_ERROR = 'login_error';
 export const IS_LOADING_LOGIN = 'loading_signin';
 export const IS_LOADING_SIGNUP = 'loading_signup';
+export const SUCCESS = 'register_sucess';

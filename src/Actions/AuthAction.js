@@ -22,10 +22,9 @@ export const registerUser = user => (
     dispatch({ type: Constants.IS_LOADING_SIGNUP });
     firebase.auth().createUserWithEmailAndPassword(user.email, user.pass)
       .then((sucess) => {
-        console.log(sucess);
         firebase.database().ref(`/contatos/users/${sucess.user.uid}`)
           .push({ email: user.email, name: user.name }).then(() => {
-            dispatch({ type: 'register_sucess' });
+            dispatch({ type: Constants.SUCCESS });
             Navigator.navigate('Home');
           });
       })
@@ -40,7 +39,7 @@ export const loginAction = user => (
   (dispatch) => {
     dispatch({ type: Constants.IS_LOADING_LOGIN });
     firebase.auth().signInWithEmailAndPassword(user.email, user.pass)
-      .then(sucess => dispatch({ type: 'login', payload: sucess }))
+      .then(() => dispatch({ type: Constants.SUCCESS }))
       .catch(err => dispatch({
         type: Constants.LOGIN_ERROR,
         payload: err.message,
