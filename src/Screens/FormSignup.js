@@ -4,10 +4,12 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import defaultStyle from './styles';
 import * as Actions from '../Actions/AuthAction';
 
 class FormCadastro extends Component {
-  caal() {
+  cadastro() {
     const { name, email, pass } = this.props;
     const { registerUser } = this.props;
     registerUser({ name, email, pass });
@@ -47,13 +49,13 @@ class FormCadastro extends Component {
             style={styles.input}
             onChangeText={newPass => changePass(newPass)}
           />
-          <Text style={styles.error}>{errorMessage}</Text>
+          <Text style={defaultStyle.errorMessage}>{errorMessage}</Text>
         </View>
         <View style={styles.bottom}>
           <Button
             title="Cadastrar"
             color="#115E54"
-            onPress={() => this.caal()}
+            onPress={() => this.cadastro()}
           />
         </View>
       </View>
@@ -122,11 +124,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   signupbutton: {
-    fontWeight: 'bold',
-  },
-  error: {
-    color: '#F00',
-    fontSize: 15,
     fontWeight: 'bold',
   },
 });

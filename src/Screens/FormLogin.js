@@ -1,72 +1,95 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet, Text, View, TextInput, Button, TouchableNativeFeedback,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeEmail, changePass } from '../Actions/AuthAction';
 
-const FormLogin = (props) => {
-  const { navigation, email, pass } = props;
-  return (
-    <View style={styles.container}>
-      <View style={styles.top}>
-        <Text style={styles.textTop}>
-          Whatsapp clone
-        </Text>
-      </View>
-      <View style={styles.form}>
-        <TextInput
-          placeholder="Email"
-          onChangeText={text => props.changeEmail(text)}
-          value={email}
-          style={styles.input}
-        />
-        <TextInput
-          placeholder="Senha"
-          onChangeText={text => props.changePass(text)}
-          secureTextEntry
-          value={pass}
-          style={styles.input}
-        />
-      </View>
-      <View style={styles.bottom}>
-        <Button title="Entrar" color="#115E54" onPress={() => null} />
-        <View style={styles.textWrapper}>
-          <Text style={styles.signup}>
-            Ainda não está cadastrado?
+import defaultStyle from './styles';
+import { changeEmail, changePass, loginAction } from '../Actions/AuthAction';
+
+class FormLogin extends Component {
+  login() {
+    console.log('IO');
+    const { email, pass, authLogin } = this.props;
+    authLogin({ email, pass });
+  }
+
+  render() {
+    const {
+      email, pass, navigation, errorMessage,
+    } = this.props;
+    const { authChangeEmail, authChangePass } = this.props;
+    return (
+      <View style={styles.container}>
+        <View style={styles.top}>
+          <Text style={styles.textTop}>
+            Whatsapp aclone
           </Text>
-          <TouchableNativeFeedback
-            onPress={() => { navigation.navigate('Signup'); }}
-          >
-            <Text style={[styles.signup, styles.signupbutton]}>
-              {' '}
-              Clique aqui
+        </View>
+        <View style={styles.form}>
+          <TextInput
+            placeholder="Email"
+            onChangeText={text => authChangeEmail(text)}
+            value={email}
+            style={styles.input}
+          />
+          <TextInput
+            placeholder="Senha"
+            onChangeText={text => authChangePass(text)}
+            secureTextEntry
+            value={pass}
+            style={styles.input}
+          />
+        </View>
+        <View style={styles.bottom}>
+          <Text style={defaultStyle.errorMessage}>{errorMessage}</Text>
+
+          <Button title="Entrar" color="#115E54" onPress={() => this.login()} />
+
+          <View style={styles.textWrapper}>
+            <Text style={styles.signup}>
+              Ainda não está cadastrado?
             </Text>
-          </TouchableNativeFeedback>
+            <TouchableNativeFeedback
+              onPress={() => { navigation.navigate('Signup'); }}
+            >
+              <Text style={[styles.signup, styles.signupbutton]}>
+                {' '}
+                Clique aqui
+              </Text>
+            </TouchableNativeFeedback>
+          </View>
         </View>
       </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 FormLogin.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  changeEmail: PropTypes.func.isRequired,
-  changePass: PropTypes.func.isRequired,
+  authChangeEmail: PropTypes.func.isRequired,
+  authChangePass: PropTypes.func.isRequired,
+  authLogin: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   pass: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => (
   {
     email: state.auth.email,
     pass: state.auth.pass,
+    errorMessage: state.auth.errorMessageSignin,
   }
 );
-export default connect(mapStateToProps, { changeEmail, changePass })(FormLogin);
+export default connect(mapStateToProps, {
+  authChangeEmail: changeEmail,
+  authChangePass: changePass,
+  authLogin: loginAction,
+})(FormLogin);
 
 const styles = StyleSheet.create({
   container: {

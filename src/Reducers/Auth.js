@@ -2,7 +2,8 @@ const INITIAL_DATA = {
   name: '',
   email: '',
   pass: '',
-  errorMessage: '',
+  errorMessageSignup: '',
+  errorMessageSignin: '',
 };
 
 export default (state = INITIAL_DATA, action) => {
@@ -17,10 +18,10 @@ export default (state = INITIAL_DATA, action) => {
     return { ...state, name: action.payload };
   }
   if (action.type === 'register_error') {
-    return { ...state, errorMessage: action.payload };
+    return { ...state, errorMessageSignup: action.payload };
   }
-  if (action.type === 'register_sucess') {
-    return { ...state };
+  if (action.type === 'login_error') {
+    return { ...state, errorMessageSignin: action.payload };
   }
   return state;
 };

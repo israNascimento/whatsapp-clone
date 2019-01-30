@@ -30,3 +30,11 @@ export const registerUser = user => (
       .catch(err => dispatch({ type: 'register_error', payload: err.message }));
   }
 );
+
+export const loginAction = user => (
+  (dispatch) => {
+    firebase.auth().signInWithEmailAndPassword(user.email, user.pass)
+      .then(sucess => dispatch({ type: 'login', payload: sucess }))
+      .catch(err => dispatch({ type: 'login_error', payload: err.message }));
+  }
+);
