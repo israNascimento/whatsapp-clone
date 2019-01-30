@@ -11,6 +11,18 @@ export default createMaterialTopTabNavigator(
   {
     navigationOptions: () => ({
       title: 'Whats',
+      headerStyle: {
+        backgroundColor: '#115E54',
+        elevation: 0,
+      },
     }),
+    tabBarOptions: {
+      labelStyle: {
+        fontWeight: 'bold',
+      },
+      style: {
+        backgroundColor: '#115E54',
+      },
+    },
   },
 );
