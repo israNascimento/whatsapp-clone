@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, TextInput, Button, Text,
+  StyleSheet, View, TextInput, Button, Text, ActivityIndicator,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -13,6 +13,23 @@ class FormCadastro extends Component {
     const { name, email, pass } = this.props;
     const { registerUser } = this.props;
     registerUser({ name, email, pass });
+  }
+
+  hasLoading() {
+    const { isLoading } = this.props;
+    console.log(isLoading);
+    if (isLoading) {
+      return (
+        <ActivityIndicator />
+      );
+    }
+    return (
+      <Button
+        title="Cadastrar"
+        color="#115E54"
+        onPress={() => this.cadastro()}
+      />
+    );
   }
 
   render() {
@@ -52,11 +69,7 @@ class FormCadastro extends Component {
           <Text style={defaultStyle.errorMessage}>{errorMessage}</Text>
         </View>
         <View style={styles.bottom}>
-          <Button
-            title="Cadastrar"
-            color="#115E54"
-            onPress={() => this.cadastro()}
-          />
+          {this.hasLoading()}
         </View>
       </View>
     );
@@ -76,7 +89,8 @@ const mapStateToProps = state => (
     name: state.auth.name,
     email: state.auth.email,
     pass: state.auth.pass,
-    errorMessage: state.auth.errorMessage,
+    errorMessage: state.auth.errorMessageSignup,
+    isLoading: state.auth.isLoading,
   }
 );
 
@@ -92,6 +106,7 @@ FormCadastro.propTypes = {
   changeName: PropTypes.func.isRequired,
   registerUser: PropTypes.func.isRequired,
   errorMessage: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, {

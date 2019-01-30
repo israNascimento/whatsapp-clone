@@ -19,6 +19,7 @@ export const changeName = newName => ({
 
 export const registerUser = user => (
   (dispatch) => {
+    dispatch({ type: Constants.IS_LOADING });
     firebase.auth().createUserWithEmailAndPassword(user.email, user.pass)
       .then((sucess) => {
         console.log(sucess);
