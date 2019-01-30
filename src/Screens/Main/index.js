@@ -15,6 +15,7 @@ export default createMaterialTopTabNavigator(
         backgroundColor: '#115E54',
         elevation: 0,
       },
+      headerLeft: null,
     }),
     tabBarOptions: {
       labelStyle: {
