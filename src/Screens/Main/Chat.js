@@ -7,4 +7,8 @@ const blue = () => (
   </View>
 );
 
+blue.navigationOptions = {
+  title: 'Conversas',
+};
+
 export default blue;

@@ -1,12 +1,12 @@
 import { createMaterialTopTabNavigator } from 'react-navigation';
 
-import Blue from './Blue';
-import Red from './Red';
+import Chat from './Chat';
+import Contacts from './Contacts';
 
 export default createMaterialTopTabNavigator(
   {
-    Blue,
-    Red,
+    Chat,
+    Contacts,
   },
   {
     navigationOptions: () => ({

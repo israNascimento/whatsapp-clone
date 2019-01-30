@@ -7,4 +7,8 @@ const red = () => (
   </View>
 );
 
+red.navigationOptions = {
+  title: 'Contatos',
+};
+
 export default red;
