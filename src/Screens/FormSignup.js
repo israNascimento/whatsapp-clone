@@ -17,7 +17,6 @@ class FormCadastro extends Component {
 
   hasLoading() {
     const { isLoading } = this.props;
-    console.log(isLoading);
     if (isLoading) {
       return (
         <ActivityIndicator />
@@ -90,7 +89,7 @@ const mapStateToProps = state => (
     email: state.auth.email,
     pass: state.auth.pass,
     errorMessage: state.auth.errorMessageSignup,
-    isLoading: state.auth.isLoading,
+    isLoading: state.auth.isLoadingSignup,
   }
 );
 

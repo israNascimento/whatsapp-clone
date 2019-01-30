@@ -19,7 +19,7 @@ export const changeName = newName => ({
 
 export const registerUser = user => (
   (dispatch) => {
-    dispatch({ type: Constants.IS_LOADING });
+    dispatch({ type: Constants.IS_LOADING_SIGNUP });
     firebase.auth().createUserWithEmailAndPassword(user.email, user.pass)
       .then((sucess) => {
         console.log(sucess);
@@ -38,7 +38,7 @@ export const registerUser = user => (
 
 export const loginAction = user => (
   (dispatch) => {
-    dispatch({ type: Constants.IS_LOADING });
+    dispatch({ type: Constants.IS_LOADING_LOGIN });
     firebase.auth().signInWithEmailAndPassword(user.email, user.pass)
       .then(sucess => dispatch({ type: 'login', payload: sucess }))
       .catch(err => dispatch({

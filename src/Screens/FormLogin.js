@@ -94,7 +94,7 @@ const mapStateToProps = state => (
     email: state.auth.email,
     pass: state.auth.pass,
     errorMessage: state.auth.errorMessageSignin,
-    isLoading: state.auth.isLoading,
+    isLoading: state.auth.isLoadingSignin,
   }
 );
 export default connect(mapStateToProps, {

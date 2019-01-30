@@ -6,7 +6,8 @@ const INITIAL_DATA = {
   pass: '',
   errorMessageSignup: '',
   errorMessageSignin: '',
-  isLoading: false,
+  isLoadingSignup: false,
+  isLoadingSignin: false,
 };
 
 export default (state = INITIAL_DATA, action) => {
@@ -18,11 +19,21 @@ export default (state = INITIAL_DATA, action) => {
     case Constants.CHANGE_NAME:
       return { ...state, name: action.payload };
     case Constants.REGISTER_ERROR:
-      return { ...state, errorMessageSignup: action.payload, isLoading: false };
+      return {
+        ...state,
+        errorMessageSignup: action.payload,
+        isLoadingSignup: false,
+      };
     case Constants.LOGIN_ERROR:
-      return { ...state, errorMessageSignin: action.payload, isLoading: false };
-    case Constants.IS_LOADING:
-      return { ...state, isLoading: true };
+      return {
+        ...state,
+        errorMessageSignin: action.payload,
+        isLoadingSignin: false,
+      };
+    case Constants.IS_LOADING_LOGIN:
+      return { ...state, isLoadingSignin: true };
+    case Constants.IS_LOADING_SIGNUP:
+      return { ...state, isLoadingSignup: true };
     default:
       return state;
   }
