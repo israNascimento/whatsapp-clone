@@ -2,8 +2,8 @@ import * as Constants from '../Constants/AuthConst';
 
 const INITIAL_DATA = {
   name: '',
-  email: '',
-  pass: '',
+  email: 'israel@gmail.com',
+  pass: '123456',
   errorMessageSignup: '',
   errorMessageSignin: '',
   isLoadingSignup: false,
