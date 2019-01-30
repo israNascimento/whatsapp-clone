@@ -77,10 +77,6 @@ class FormCadastro extends Component {
 
 FormCadastro.navigationOptions = {
   title: 'Cadastro',
-  headerStyle: {
-    backgroundColor: '#115E54',
-  },
-  headerTintColor: '#fff',
 };
 
 const mapStateToProps = state => (

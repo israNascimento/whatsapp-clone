@@ -36,7 +36,7 @@ class FormLogin extends Component {
       <View style={styles.container}>
         <View style={styles.top}>
           <Text style={styles.textTop}>
-            Whatsapp aclone
+            Whatsapp clone
           </Text>
         </View>
         <View style={styles.form}>

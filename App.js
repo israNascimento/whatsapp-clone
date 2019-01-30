@@ -9,6 +9,7 @@ import NavigationService from './src/NavigationService';
 import Reducers from './src/Reducers';
 import FormLogin from './src/Screens/FormLogin';
 import FormSignup from './src/Screens/FormSignup';
+import MainScreen from './src/Screens/Main';
 
 
 const RootStack = createStackNavigator(
@@ -20,9 +21,16 @@ const RootStack = createStackNavigator(
       }),
     },
     Signup: FormSignup,
+    Main: MainScreen,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Main',
+    defaultNavigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: '#115E54',
+      },
+      headerTintColor: 'white',
+    }),
   },
 );
 
