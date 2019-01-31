@@ -8,6 +8,10 @@ const styles = StyleSheet.create(
       fontWeight: 'bold',
       padding: 5,
     },
+    input: {
+      height: 45,
+      fontSize: 20,
+    },
   },
 );
 

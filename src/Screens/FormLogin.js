@@ -44,14 +44,14 @@ class FormLogin extends Component {
             placeholder="Email"
             onChangeText={text => authChangeEmail(text)}
             value={email}
-            style={styles.input}
+            style={defaultStyle.input}
           />
           <TextInput
             placeholder="Senha"
             onChangeText={text => authChangePass(text)}
             secureTextEntry
             value={pass}
-            style={styles.input}
+            style={defaultStyle.input}
           />
         </View>
         <View style={styles.bottom}>
@@ -122,10 +122,6 @@ const styles = StyleSheet.create({
   form: {
     flex: 2,
     justifyContent: 'center',
-  },
-  input: {
-    height: 45,
-    fontSize: 20,
   },
 
   bottom: {

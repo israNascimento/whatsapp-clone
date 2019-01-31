@@ -42,27 +42,27 @@ class FormCadastro extends Component {
           <TextInput
             value={name}
             placeholder="Nome"
-            style={styles.input}
+            style={defaultStyle.input}
             onChangeText={newName => changeName(newName)}
           />
           <TextInput
             value={email}
             placeholder="Email"
-            style={styles.input}
+            style={defaultStyle.input}
             onChangeText={newEmaill => changeEmail(newEmaill)}
           />
           <TextInput
             value={pass}
             placeholder="Senha"
             secureTextEntry
-            style={styles.input}
+            style={defaultStyle.input}
             onChangeText={newPass => changePass(newPass)}
           />
           <TextInput
             value={pass}
             placeholder="Confirme sua senha"
             secureTextEntry
-            style={styles.input}
+            style={defaultStyle.input}
             onChangeText={newPass => changePass(newPass)}
           />
           <Text style={defaultStyle.errorMessage}>{errorMessage}</Text>
@@ -121,11 +121,6 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: 'center',
   },
-  input: {
-    height: 45,
-    fontSize: 20,
-  },
-
   bottom: {
     flex: 2,
   },
