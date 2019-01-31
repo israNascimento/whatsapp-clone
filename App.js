@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import thunk from 'redux-thunk';
+import { YellowBox } from 'react-native';
 
 import NavigationService from './src/NavigationService';
 import Reducers from './src/Reducers';
@@ -11,6 +12,7 @@ import FormLogin from './src/Screens/FormLogin';
 import FormSignup from './src/Screens/FormSignup';
 import MainScreen from './src/Screens/Main';
 
+YellowBox.ignoreWarnings(['Remote debugger']);
 
 const RootStack = createStackNavigator(
   {
