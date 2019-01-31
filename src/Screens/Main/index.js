@@ -1,7 +1,9 @@
+import React from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation';
 
 import Chat from './Chat';
 import Contacts from './Contacts';
+import HeaderRight from './HeaderRight';
 
 export default createMaterialTopTabNavigator(
   {
@@ -16,6 +18,9 @@ export default createMaterialTopTabNavigator(
         elevation: 0,
       },
       headerLeft: null,
+      headerRight: (
+        <HeaderRight />
+      ),
     }),
     tabBarOptions: {
       labelStyle: {
