@@ -2,31 +2,48 @@ import React from 'react';
 import {
   Image, View, Text, StyleSheet, TouchableHighlight,
 } from 'react-native';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-export default () => (
-  <View style={style.view}>
-    <TouchableHighlight
-      style={style.image}
-      onPress={() => null}
-      underlayColor="#114D44"
-    >
-      <Image
-        source={require('../../imgs/add-contact.png')}
-      />
-    </TouchableHighlight>
-    <Text style={style.text}>SAIR</Text>
+import { changeModalVisibility } from '../../Actions/MainAction';
+import AddContactModal from './AddContactModal';
+
+const HeaderRight = props => (
+  <View>
+    <AddContactModal />
+    <View style={style.viewHeader}>
+      <TouchableHighlight
+        style={style.imageHeader}
+        onPress={() => props.changeModalVisibility(true)}
+        underlayColor="#114D44"
+      >
+        <Image
+          source={require('../../imgs/add-contact.png')}
+        />
+      </TouchableHighlight>
+      <Text style={style.textHeader}>SAIR</Text>
+    </View>
   </View>
 );
 
+HeaderRight.propTypes = {
+  changeModalVisibility: PropTypes.func.isRequired,
+};
+
+
+export default connect(null, {
+  changeModalVisibility,
+})(HeaderRight);
+
 const style = StyleSheet.create({
-  view: {
+  viewHeader: {
     flexDirection: 'row',
     marginRight: 10,
   },
-  image: {
+  imageHeader: {
     marginRight: 15,
   },
-  text: {
+  textHeader: {
     fontSize: 17,
     color: '#FFF',
   },
