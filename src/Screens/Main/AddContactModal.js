@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-  Modal, View, StyleSheet, Text,
+  Modal, View, StyleSheet, Text, TextInput, Button,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { changeModalVisibility } from '../../Actions/MainAction';
+import defaultStyles from '../styles';
 
 const AddContactModal = (props) => {
   const { isModalVisible, changeVisibility } = props;
@@ -18,7 +19,9 @@ const AddContactModal = (props) => {
     >
       <View style={style.outModal}>
         <View style={style.inModal}>
-          <Text>Ola mundo!</Text>
+          <Text>ADICIONAR CONTATOS</Text>
+          <TextInput style={defaultStyles.input} placeholder="Email" />
+          <Button title="Adicionar" color="#115E54" onPress={() => null} />
         </View>
       </View>
     </Modal>
@@ -41,12 +44,15 @@ export default connect(mapStateToProps, {
 const style = StyleSheet.create({
   outModal: {
     flex: 1,
-    flexDirection: 'column-reverse',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#00000080',
   },
   inModal: {
-    height: 200,
+    width: 300,
     backgroundColor: '#FFF',
     padding: 20,
+    flexDirection: 'column',
   },
 });
