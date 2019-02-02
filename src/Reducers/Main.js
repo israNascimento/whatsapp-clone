@@ -3,6 +3,7 @@ import * as Constants from '../Constants/AppConst';
 const INITIAL_DATA = {
   isModalVisible: false,
   addContactText: '',
+  addContactErrorText: '',
 };
 
 export default (state = INITIAL_DATA, action) => {
@@ -13,6 +14,8 @@ export default (state = INITIAL_DATA, action) => {
       return { ...state, isModalVisible: action.payload };
     case Constants.CHANGE_ADD_CONTACT_TEXT:
       return { ...state, addContactText: action.payload };
+    case Constants.ADD_CONTACT_ERROR:
+      return { ...state, addContactErrorText: action.payload };
     default:
       return state;
   }

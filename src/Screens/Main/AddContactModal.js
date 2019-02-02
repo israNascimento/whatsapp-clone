@@ -6,13 +6,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
-  changeModalVisibilityAction, changeContactTextAction,
+  changeModalVisibilityAction, changeContactTextAction, addContactAction,
 } from '../../Actions/MainAction';
 import defaultStyles from '../styles';
 
 const AddContactModal = (props) => {
   const {
-    isModalVisible, changeVisibility, addContactText, changeContactText,
+    isModalVisible,
+    addContactText, changeContactText, errorText,
+    addContact, changeVisibility,
   } = props;
   return (
     <Modal
@@ -30,7 +32,12 @@ const AddContactModal = (props) => {
             onChangeText={text => changeContactText(text)}
             placeholder="Email"
           />
-          <Button title="Adicionar" color="#115E54" onPress={() => null} />
+          <Text style={defaultStyles.errorMessage}>{errorText}</Text>
+          <Button
+            title="Adicionar"
+            color="#115E54"
+            onPress={() => addContact(addContactText)}
+          />
         </View>
       </View>
     </Modal>
@@ -40,19 +47,23 @@ const AddContactModal = (props) => {
 AddContactModal.propTypes = {
   isModalVisible: PropTypes.bool.isRequired,
   addContactText: PropTypes.string.isRequired,
+  errorText: PropTypes.string.isRequired,
+  changeContactText: PropTypes.func.isRequired,
 
   changeVisibility: PropTypes.func.isRequired,
-  changeContactText: PropTypes.func.isRequired,
+  addContact: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   isModalVisible: state.main.isModalVisible,
   addContactText: state.main.addContactText,
+  errorText: state.main.addContactErrorText,
 });
 
 export default connect(mapStateToProps, {
   changeVisibility: changeModalVisibilityAction,
   changeContactText: changeContactTextAction,
+  addContact: addContactAction,
 })(AddContactModal);
 
 const style = StyleSheet.create({

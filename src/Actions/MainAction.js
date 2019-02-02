@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import * as Constants from '../Constants/AppConst';
 
 export const changeModalVisibilityAction = visibility => ({
@@ -10,4 +11,24 @@ export const changeContactTextAction = text => ({
   payload: text,
 });
 
-export const toIgnore = 1;
+export const addContactAction = email => (
+  (dispatch) => {
+    dispatch({ type: 'loading...' });
+    firebase.database().ref('contatos/users/').orderByChild('email')
+      .equalTo(email)
+      .once('value')
+      .then((snapshot) => {
+        if (snapshot.val() != null) {
+          dispatch({ type: 'Contatos...', payload: JSON.stringify(snapshot) });
+        } else {
+          dispatch({
+            type: Constants.ADD_CONTACT_ERROR,
+            payload: 'Usuário não encontrado',
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({ type: 'Error...', payload: error });
+      });
+  }
+);
