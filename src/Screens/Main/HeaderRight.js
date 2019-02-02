@@ -5,7 +5,7 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { changeModalVisibilityAction } from '../../Actions/MainAction';
+import { changeModalVisibilityAction } from '../../Actions/AddContactAction';
 import AddContactModal from './AddContactModal';
 
 const HeaderRight = props => (

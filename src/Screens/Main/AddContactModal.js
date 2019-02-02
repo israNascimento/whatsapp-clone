@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import {
   changeModalVisibilityAction, changeContactTextAction, addContactAction,
-} from '../../Actions/MainAction';
+} from '../../Actions/AddContactAction';
 import defaultStyles from '../styles';
 
 const AddContactModal = (props) => {
@@ -55,9 +55,9 @@ AddContactModal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isModalVisible: state.main.isModalVisible,
-  addContactText: state.main.addContactText,
-  errorText: state.main.addContactErrorText,
+  isModalVisible: state.addContacts.isModalVisible,
+  addContactText: state.addContacts.addContactText,
+  errorText: state.addContacts.addContactErrorText,
 });
 
 export default connect(mapStateToProps, {

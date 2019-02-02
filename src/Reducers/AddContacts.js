@@ -1,4 +1,4 @@
-import * as Constants from '../Constants/AppConst';
+import * as Constants from '../Constants/AddContactConst';
 
 const INITIAL_DATA = {
   isModalVisible: false,

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import auth from './Auth';
-import main from './Main';
+import addContacts from './AddContacts';
 
 export default combineReducers({
   auth,
-  main,
+  addContacts,
 });

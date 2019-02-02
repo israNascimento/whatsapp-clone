@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import _ from 'lodash';
-import * as Constants from '../Constants/AppConst';
+import * as Constants from '../Constants/AddContactConst';
 
 export const changeModalVisibilityAction = visibility => ({
   type: Constants.MODAL_VISIBILITY,
