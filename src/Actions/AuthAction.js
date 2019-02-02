@@ -23,7 +23,7 @@ export const registerUser = user => (
     firebase.auth().createUserWithEmailAndPassword(user.email, user.pass)
       .then((sucess) => {
         firebase.database().ref(`/contatos/users/${sucess.user.uid}`)
-          .push({ email: user.email, name: user.name }).then(() => {
+          .set({ email: user.email, name: user.name }).then(() => {
             dispatch({ type: Constants.SUCCESS });
             Navigator.navigate('Home');
           });
