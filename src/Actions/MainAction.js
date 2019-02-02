@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import _ from 'lodash';
 import * as Constants from '../Constants/AppConst';
 
 export const changeModalVisibilityAction = visibility => ({
@@ -14,12 +15,22 @@ export const changeContactTextAction = text => ({
 export const addContactAction = email => (
   (dispatch) => {
     dispatch({ type: 'loading...' });
-    firebase.database().ref('contatos/users/').orderByChild('email')
+    firebase.database().ref('users/').orderByChild('email')
       .equalTo(email)
       .once('value')
       .then((snapshot) => {
         if (snapshot.val() != null) {
-          dispatch({ type: 'Contatos...', payload: JSON.stringify(snapshot) });
+          const { uid } = firebase.auth().currentUser;
+          const userData = _.first(_.values(snapshot.val()));
+          firebase.database().ref(`contacts/${uid}`).push({
+            email: userData.email,
+            name: userData.name,
+          })
+            .then(() => dispatch({ type: Constants.ADD_CONTACT_SUCESS }))
+            .catch(error => dispatch({
+              type: Constants.ADD_CONTACT_ERROR,
+              payload: error.message,
+            }));
         } else {
           dispatch({
             type: Constants.ADD_CONTACT_ERROR,
@@ -28,7 +39,10 @@ export const addContactAction = email => (
         }
       })
       .catch((error) => {
-        dispatch({ type: 'Error...', payload: error });
+        dispatch({
+          type: Constants.ADD_CONTACT_ERROR,
+          payload: error.message,
+        });
       });
   }
 );

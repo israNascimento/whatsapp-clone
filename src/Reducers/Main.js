@@ -16,6 +16,13 @@ export default (state = INITIAL_DATA, action) => {
       return { ...state, addContactText: action.payload };
     case Constants.ADD_CONTACT_ERROR:
       return { ...state, addContactErrorText: action.payload };
+    case Constants.ADD_CONTACT_SUCESS:
+      return {
+        ...state,
+        addContactErrorText: '',
+        addContactText: '',
+        isModalVisible: false,
+      };
     default:
       return state;
   }
