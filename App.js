@@ -13,6 +13,8 @@ import FormSignup from './src/Screens/FormSignup';
 import MainScreen from './src/Screens/Main';
 
 YellowBox.ignoreWarnings(['Remote debugger']);
+YellowBox.ignoreWarnings(['Setting a timer']);
+YellowBox.ignoreWarnings(['[2019']);
 
 const RootStack = createStackNavigator(
   {
@@ -26,7 +28,7 @@ const RootStack = createStackNavigator(
     Main: MainScreen,
   },
   {
-    initialRouteName: 'Main',
+    initialRouteName: 'Home',
     defaultNavigationOptions: () => ({
       headerStyle: {
         backgroundColor: '#115E54',
