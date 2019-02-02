@@ -5,11 +5,15 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { changeModalVisibility } from '../../Actions/MainAction';
+import {
+  changeModalVisibilityAction, changeContactTextAction,
+} from '../../Actions/MainAction';
 import defaultStyles from '../styles';
 
 const AddContactModal = (props) => {
-  const { isModalVisible, changeVisibility } = props;
+  const {
+    isModalVisible, changeVisibility, addContactText, changeContactText,
+  } = props;
   return (
     <Modal
       animationType="fade"
@@ -20,7 +24,12 @@ const AddContactModal = (props) => {
       <View style={style.outModal}>
         <View style={style.inModal}>
           <Text>ADICIONAR CONTATOS</Text>
-          <TextInput style={defaultStyles.input} placeholder="Email" />
+          <TextInput
+            style={defaultStyles.input}
+            value={addContactText}
+            onChangeText={text => changeContactText(text)}
+            placeholder="Email"
+          />
           <Button title="Adicionar" color="#115E54" onPress={() => null} />
         </View>
       </View>
@@ -30,15 +39,20 @@ const AddContactModal = (props) => {
 
 AddContactModal.propTypes = {
   isModalVisible: PropTypes.bool.isRequired,
+  addContactText: PropTypes.string.isRequired,
+
   changeVisibility: PropTypes.func.isRequired,
+  changeContactText: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   isModalVisible: state.main.isModalVisible,
+  addContactText: state.main.addContactText,
 });
 
 export default connect(mapStateToProps, {
-  changeVisibility: changeModalVisibility,
+  changeVisibility: changeModalVisibilityAction,
+  changeContactText: changeContactTextAction,
 })(AddContactModal);
 
 const style = StyleSheet.create({
