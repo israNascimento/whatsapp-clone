@@ -3,15 +3,22 @@ import { Header } from 'react-navigation';
 import {
   View, TextInput, StyleSheet, Button, KeyboardAvoidingView,
 } from 'react-native';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import defaultStyle from '../../styles';
+import {
+  changeMessageTextAction, sendMessageAction,
+} from '../../../Actions/ChatAction';
 
 class Chat extends Component {
-  ignore() {
-    this.a = 1;
+  sendMessage() {
+    const { chatTextInput, sendMessage } = this.props;
+    sendMessage(chatTextInput);
   }
 
   render() {
-    console.log();
+    const { chatTextInput, changeText } = this.props;
     return (
       <KeyboardAvoidingView
         keyboardVerticalOffset={Header.HEIGHT + 25}
@@ -22,16 +29,24 @@ class Chat extends Component {
           <View style={styles.messages} />
           <View style={styles.inputContainer}>
             <TextInput
+              value={chatTextInput}
+              onChangeText={text => changeText(text)}
               style={[defaultStyle.input, styles.textInput]}
-              placeholder="Digite seu texto"
+              placeholder="Digite seu "
             />
-            <Button title="Enviar" onPress={() => false} />
+            <Button title="Enviar" onPress={() => this.sendMessage()} />
           </View>
         </View>
       </KeyboardAvoidingView>
     );
   }
 }
+
+Chat.propTypes = {
+  chatTextInput: PropTypes.string.isRequired,
+  changeText: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -53,4 +68,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Chat;
+const mapStateToProps = state => ({
+  chatTextInput: state.chat.textInput,
+});
+
+export default connect(mapStateToProps, {
+  changeText: changeMessageTextAction,
+  sendMessage: sendMessageAction,
+})(Chat);
