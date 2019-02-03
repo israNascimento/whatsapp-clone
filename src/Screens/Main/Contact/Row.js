@@ -9,7 +9,6 @@ import Navigator from '../../../NavigationService';
 
 const Row = (props) => {
   const { name, email, uid } = props;
-  console.log(props);
   return (
     <Touchable onPress={() => Navigator.navigate('Chat', { name, uid })}>
       <View style={styles.container}>
