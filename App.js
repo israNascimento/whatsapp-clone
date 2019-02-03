@@ -11,6 +11,7 @@ import Reducers from './src/Reducers';
 import FormLogin from './src/Screens/FormLogin';
 import FormSignup from './src/Screens/FormSignup';
 import MainScreen from './src/Screens/Main';
+import Chat from './src/Screens/Main/Chat';
 
 YellowBox.ignoreWarnings(['Remote debugger']);
 YellowBox.ignoreWarnings(['Setting a timer']);
@@ -24,6 +25,7 @@ const RootStack = createStackNavigator(
         header: null,
       }),
     },
+    Chat,
     Signup: FormSignup,
     Main: MainScreen,
   },
