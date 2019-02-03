@@ -1,12 +1,13 @@
 import firebase from 'firebase';
 import * as Constants from '../Constants/ContactsConst';
 
-export const contactsFetch = () => {
-  const currentUserEmail = firebase.auth().currentUser.email;
+export const contactsFetchAction = () => {
+  const currentUserUID = firebase.auth().currentUser.uid;
   return ((dispatch) => {
-    firebase.database().ref(`contacts/${currentUserEmail}`)
+    firebase.database().ref(`contacts/${currentUserUID}`)
       .on('value', (snapshot) => {
-        dispatch({ type: Constants.CONTACT_LIST, payload: snapshot.data() });
+        console.log(snapshot.val());
+        dispatch({ type: Constants.CONTACT_LIST, payload: snapshot.val() });
       });
   });
 };
