@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
@@ -28,14 +28,21 @@ class Contacts extends Component {
       <View style={{ flex: 1 }}>
         <FlatList
           data={this.dataSource}
-          extraData={this.dataSource}
           renderItem={({ item }) => <Row {...item} />}
           keyExtractor={item => item.uid}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
         />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  separator: {
+    height: 1,
+    backgroundColor: 'grey',
+  },
+});
 
 Contacts.propTypes = {
   contactsFetch: PropTypes.func.isRequired,
