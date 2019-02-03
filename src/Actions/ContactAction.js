@@ -6,7 +6,6 @@ export const contactsFetchAction = () => {
   return ((dispatch) => {
     firebase.database().ref(`contacts/${currentUserUID}`)
       .on('value', (snapshot) => {
-        console.log(snapshot.val());
         dispatch({ type: Constants.CONTACT_LIST, payload: snapshot.val() });
       });
   });
