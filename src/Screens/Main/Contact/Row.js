@@ -5,12 +5,13 @@ import {
 import PropTypes from 'prop-types';
 
 import Touchable from '../../Widgets/Touchable';
+import Navigator from '../../../NavigationService';
 
 const Row = (props) => {
   const { name, email } = props;
-  console.log('Render...');
+  console.log(props);
   return (
-    <Touchable onPress={() => false}>
+    <Touchable onPress={() => Navigator.navigate('Chat')}>
       <View style={styles.container}>
         <Text style={[styles.text, styles.name]}>{name.toUpperCase()}</Text>
         <Text style={[styles.text, styles.email]}>{email}</Text>
