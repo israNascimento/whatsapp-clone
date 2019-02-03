@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, View, TextInput, Button, TouchableNativeFeedback,
+  StyleSheet, Text, View, TextInput, Button,
   ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 
 import defaultStyle from './styles';
 import { changeEmail, changePass, loginAction } from '../Actions/AuthAction';
+import Touchable from './Widgets/Touchable';
 
 class FormLogin extends Component {
   login() {
@@ -61,14 +62,14 @@ class FormLogin extends Component {
             <Text style={styles.signup}>
               Ainda não está cadastrado?
             </Text>
-            <TouchableNativeFeedback
+            <Touchable
               onPress={() => { navigation.navigate('Signup'); }}
             >
               <Text style={[styles.signup, styles.signupbutton]}>
                 {' '}
                 Clique aqui
               </Text>
-            </TouchableNativeFeedback>
+            </Touchable>
           </View>
         </View>
       </View>
