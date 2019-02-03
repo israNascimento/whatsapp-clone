@@ -13,11 +13,14 @@ import {
 
 class Chat extends Component {
   sendMessage() {
-    const { chatTextInput, sendMessage } = this.props;
-    sendMessage(chatTextInput);
+    const { chatTextInput, sendMessage, navigation } = this.props;
+    const { params } = navigation.state;
+    console.log(params);
+    sendMessage(chatTextInput, { ...params });
   }
 
   render() {
+    console.log(this.props);
     const { chatTextInput, changeText } = this.props;
     return (
       <KeyboardAvoidingView
@@ -46,6 +49,7 @@ Chat.propTypes = {
   chatTextInput: PropTypes.string.isRequired,
   changeText: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({

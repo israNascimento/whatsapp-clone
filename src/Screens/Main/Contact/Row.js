@@ -10,7 +10,7 @@ import Navigator from '../../../NavigationService';
 const Row = (props) => {
   const { name, email, uid } = props;
   return (
-    <Touchable onPress={() => Navigator.navigate('Chat', { name, uid })}>
+    <Touchable onPress={() => Navigator.navigate('Chat', { name, uid, email })}>
       <View style={styles.container}>
         <Text style={[styles.text, styles.name]}>{name.toUpperCase()}</Text>
         <Text style={[styles.text, styles.email]}>{email}</Text>
