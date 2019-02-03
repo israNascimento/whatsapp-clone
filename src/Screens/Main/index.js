@@ -2,7 +2,7 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation';
 
 import Chat from './Chat';
-import Contacts from './Contacts';
+import Contacts from './Contact/Contacts';
 import HeaderRight from './HeaderRight';
 
 export default createMaterialTopTabNavigator(
