@@ -1,8 +1,8 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation';
 
-import Chat from './Chat';
-import Contacts from './Contact/Contacts';
+import Chat from './ChatList';
+import Contacts from './Contact';
 import HeaderRight from './HeaderRight';
 
 export default createMaterialTopTabNavigator(
