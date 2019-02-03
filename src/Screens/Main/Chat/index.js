@@ -35,7 +35,7 @@ class Chat extends Component {
               value={chatTextInput}
               onChangeText={text => changeText(text)}
               style={[defaultStyle.input, styles.textInput]}
-              placeholder="Digite seu "
+              placeholder="Digite sua mensagem... "
             />
             <Button title="Enviar" onPress={() => this.sendMessage()} />
           </View>
