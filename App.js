@@ -25,7 +25,12 @@ const RootStack = createStackNavigator(
         header: null,
       }),
     },
-    Chat,
+    Chat: {
+      screen: Chat,
+      navigationOptions: ({ navigation }) => ({
+        title: `${navigation.state.params.name}`,
+      }),
+    },
     Signup: FormSignup,
     Main: MainScreen,
   },
