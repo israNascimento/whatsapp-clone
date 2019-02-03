@@ -1,15 +1,21 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {
+  View, Text, StyleSheet,
+} from 'react-native';
 import PropTypes from 'prop-types';
+
+import Touchable from '../../Widgets/Touchable';
 
 const Row = (props) => {
   const { name, email } = props;
   console.log('Render...');
   return (
-    <View style={styles.container}>
-      <Text style={[styles.text, styles.name]}>{name.toUpperCase()}</Text>
-      <Text style={[styles.text, styles.email]}>{email}</Text>
-    </View>
+    <Touchable onPress={() => false}>
+      <View style={styles.container}>
+        <Text style={[styles.text, styles.name]}>{name.toUpperCase()}</Text>
+        <Text style={[styles.text, styles.email]}>{email}</Text>
+      </View>
+    </Touchable>
   );
 };
 
