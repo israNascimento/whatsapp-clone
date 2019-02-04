@@ -21,8 +21,11 @@ export const addContactAction = email => (
       .then((snapshot) => {
         if (snapshot.val() != null) {
           const { uid } = firebase.auth().currentUser;
-          const userData = _.first(_.values(snapshot.val()));
-          firebase.database().ref(`contacts/${uid}`).push({
+          const userData = _.first(_.map(snapshot.val(), (value, key) => ({
+            ...value,
+            uid: key,
+          })));
+          firebase.database().ref(`contacts/${uid}/${userData.uid}`).set({
             email: userData.email,
             name: userData.name,
           })
