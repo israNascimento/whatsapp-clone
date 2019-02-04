@@ -4,10 +4,12 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import firebase from 'firebase';
 
 import { changeModalVisibilityAction } from '../../Actions/AddContactAction';
 import AddContactModal from './AddContactModal';
 import Touchable from '../Widgets/Touchable';
+import NavigationService from '../../NavigationService';
 
 const HeaderRight = props => (
   <View>
@@ -21,7 +23,15 @@ const HeaderRight = props => (
           source={require('../../imgs/add-contact.png')}
         />
       </Touchable>
-      <Text style={style.textHeader}>SAIR</Text>
+      <Touchable
+        onPress={() => {
+          firebase.auth().signOut().then(() => {
+            NavigationService.navigate('Home');
+          });
+        }}
+      >
+        <Text style={style.textHeader}>SAIR</Text>
+      </Touchable>
     </View>
   </View>
 );
