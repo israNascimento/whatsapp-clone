@@ -57,7 +57,11 @@ class Chat extends Component {
               style={[defaultStyle.input, styles.textInput]}
               placeholder="Digite sua mensagem... "
             />
-            <Button title="Enviar" onPress={() => this.sendMessage()} />
+            <Button
+              title="Enviar"
+              color="#115E54"
+              onPress={() => this.sendMessage()}
+            />
           </View>
         </View>
       </KeyboardAvoidingView>
