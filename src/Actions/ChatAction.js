@@ -47,8 +47,11 @@ export const fetchMessagesAction = (otherUid) => {
   return ((dispatch) => {
     firebase.database().ref(`/messages/${myUid}/${otherUid}/messageList`)
       .on('value', (snapshot) => {
-        const dataArray = _.toArray(snapshot.val());
-        dispatch({ type: Constants.CHAT_LIST, payload: dataArray });
+        const snapArray = _.toArray(_.map(snapshot.val(), (value, key) => ({
+          ...value,
+          messageId: key,
+        })));
+        dispatch({ type: Constants.CHAT_LIST, payload: snapArray });
       });
   });
 };

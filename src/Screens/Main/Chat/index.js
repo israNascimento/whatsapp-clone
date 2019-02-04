@@ -26,7 +26,6 @@ class Chat extends Component {
 
   setDataSource(data) {
     const { chatList } = data;
-    console.log(chatList);
     this.dataSource = chatList;
   }
 
@@ -37,9 +36,8 @@ class Chat extends Component {
   }
 
   render() {
-    const { chatTextInput, changeText } = this.props;
-    // this.setDataSource(this.props);
-    console.log(this.dataSource);
+    const { chatTextInput, changeText, navigation } = this.props;
+    const { name } = navigation.state.params;
     return (
       <KeyboardAvoidingView
         keyboardVerticalOffset={Header.HEIGHT + 25}
@@ -49,7 +47,8 @@ class Chat extends Component {
         <View style={styles.container}>
           <FlatList
             data={this.dataSource}
-            renderItem={({ item }) => <View />}
+            renderItem={({ item }) => <Row {...item} name={name} />}
+            keyExtractor={item => item.messageId}
           />
           <View style={styles.inputContainer}>
             <TextInput
