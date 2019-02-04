@@ -38,7 +38,7 @@ export const sendMessageAction = (message, other) => ((dispatch) => {
               });
           });
         })
-        .then(() => dispatch({ type: 'sucesso' }));
+        .then(() => dispatch({ type: Constants.SUCCESS }));
     });
 });
 

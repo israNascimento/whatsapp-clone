@@ -11,6 +11,8 @@ export default (state = INITIAL_DATA, action) => {
       return { ...state, textInput: action.payload };
     case Constants.CHAT_LIST:
       return { ...state, chatList: action.payload };
+    case Constants.SUCCESS:
+      return { ...state, textInput: '' };
     default:
       return state;
   }
