@@ -9,10 +9,11 @@ import Navigator from '../../../NavigationService';
 
 const Row = (props) => {
   const { otherName, otherEmail, uid } = props;
-  console.log(props);
   return (
     <Touchable
-      onPress={() => Navigator.navigate('Chat', { name: otherName, uid })}
+      onPress={() => Navigator.navigate('Chat', {
+        name: otherName, uid, email: otherEmail,
+      })}
     >
       <View style={styles.container}>
         <Text style={[styles.text, styles.name]}>
