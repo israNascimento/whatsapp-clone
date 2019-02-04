@@ -1,7 +1,7 @@
 import * as Constants from '../Constants/ContactsConst';
 
 const INITIAL_DATA = {
-
+  list: [],
 };
 
 export default (state = INITIAL_DATA, action) => {

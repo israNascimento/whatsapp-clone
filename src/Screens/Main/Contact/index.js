@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import { contactsFetchAction } from '../../../Actions/ContactAction';
 import Row from './Row';
@@ -53,12 +52,9 @@ Contacts.navigationOptions = {
   title: 'Contatos',
 };
 
-const mapStateToProps = (state) => {
-  const contacts = _.map(state.contacts.list, (val, uid) => ({ ...val, uid }));
-  return {
-    contacts,
-  };
-};
+const mapStateToProps = state => ({
+  contacts: state.contacts.list,
+});
 
 export default connect(mapStateToProps, {
   contactsFetch: contactsFetchAction,
