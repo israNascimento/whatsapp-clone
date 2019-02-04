@@ -41,7 +41,7 @@ class Chat extends Component {
     return (
       <KeyboardAvoidingView
         keyboardVerticalOffset={Header.HEIGHT + 25}
-        style={{ flex: 1, backgroundColor: 'green' }}
+        style={{ flex: 1, backgroundColor: '#E4DED3' }}
         behavior="padding"
       >
         <View style={styles.container}>
