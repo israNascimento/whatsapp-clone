@@ -12,7 +12,7 @@ export default createMaterialTopTabNavigator(
   },
   {
     navigationOptions: () => ({
-      title: 'Whats',
+      title: 'Whatsapp',
       headerStyle: {
         backgroundColor: '#115E54',
         elevation: 0,
