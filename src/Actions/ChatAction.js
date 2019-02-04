@@ -1,4 +1,6 @@
 import firebase from 'firebase';
+import _ from 'lodash';
+
 import * as Constants from '../Constants/ChatConstants';
 
 export const changeMessageTextAction = text => ({
@@ -42,10 +44,11 @@ export const sendMessageAction = (message, other) => ((dispatch) => {
 
 export const fetchMessagesAction = (otherUid) => {
   const myUid = firebase.auth().currentUser.uid;
-  firebase.database().ref(`/messages/${myUid}/${otherUid}`)
-    .on('value')
-    .then((snapshot) => {
-      console.log(snapshot.val());
-    });
-  return { type: Constants.MESSAGE_LIST };
+  return ((dispatch) => {
+    firebase.database().ref(`/messages/${myUid}/${otherUid}/messageList`)
+      .on('value', (snapshot) => {
+        const dataArray = _.toArray(snapshot.val());
+        dispatch({ type: Constants.CHAT_LIST, payload: dataArray });
+      });
+  });
 };
