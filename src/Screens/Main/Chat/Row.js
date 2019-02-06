@@ -9,16 +9,20 @@ class Row extends Component {
     const { type, message, timeStamp } = this.props;
     if (type === 'send') {
       return (
-        <View style={[styles.containerSender, styles.sender]}>
-          <Text>{message}</Text>
-          <Text style={styles.timeStamp}>{timeStamp}</Text>
+        <View style={[styles.container, styles.containerSender]}>
+          <View style={styles.sender}>
+            <Text>{message}</Text>
+            <Text style={styles.timeStamp}>{timeStamp}</Text>
+          </View>
         </View>
       );
     }
     return (
-      <View style={styles.containerReceiver}>
-        <Text style={styles.receiver}>{message}</Text>
-        <Text style={styles.timeStamp}>{timeStamp}</Text>
+      <View style={[styles.container, styles.containerReceiver]}>
+        <View style={styles.receiver}>
+          <Text>{message}</Text>
+          <Text style={styles.timeStamp}>{timeStamp}</Text>
+        </View>
       </View>
     );
   }
@@ -37,27 +41,30 @@ Row.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 5,
+  },
   containerSender: {
     marginLeft: 40,
-    marginRight: 5,
-    marginTop: 5,
+    marginRight: 15,
     alignItems: 'flex-end',
   },
   sender: {
     backgroundColor: '#dbf5b4',
     padding: 15,
+    borderRadius: 10,
     elevation: 1,
   },
   containerReceiver: {
     marginRight: 40,
-    marginLeft: 5,
-    marginTop: 5,
+    marginLeft: 15,
     alignItems: 'flex-start',
   },
   receiver: {
     backgroundColor: '#f7f7f7',
     padding: 15,
     elevation: 1,
+    borderRadius: 10,
   },
   timeStamp: {
     color: 'grey',
