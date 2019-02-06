@@ -93,12 +93,11 @@ const styles = StyleSheet.create({
   },
   messages: {
     flex: 10,
-    backgroundColor: 'red',
   },
   inputContainer: {
     margin: 10,
     flexDirection: 'row',
-    height: 50,
+    height: 48,
   },
   textInput: {
     backgroundColor: 'white',
@@ -109,12 +108,12 @@ const styles = StyleSheet.create({
     borderRadius: 23,
   },
   image: {
-    width: 50,
-    height: 50,
+    width: 48,
+    height: 48,
   },
   sendButton: {
     backgroundColor: PRIMARY_COLOR,
-    borderRadius: 25,
+    borderRadius: 24,
   },
 });
 
