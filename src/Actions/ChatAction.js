@@ -17,12 +17,14 @@ export const sendMessageAction = (message, other) => ((dispatch) => {
       firebase.database().ref(`/messages/${myUid}/${other.uid}/messageList`)
         .push({
           message,
+          timeStamp: firebase.database.ServerValue.TIMESTAMP,
           type: 'send',
         }).then(() => {
           firebase.database()
             .ref(`/messages/${other.uid}/${myUid}/messageList`)
             .push({
               message,
+              timeStamp: firebase.database.ServerValue.TIMESTAMP,
               type: 'received',
             });
         })
@@ -49,6 +51,7 @@ export const fetchMessagesAction = (otherUid) => {
       .on('value', (snapshot) => {
         const snapArray = _.toArray(_.map(snapshot.val(), (value, key) => ({
           ...value,
+          timeStamp: new Date(value.timeStamp).toDateString(),
           messageId: key,
         })));
         dispatch({ type: Constants.CHAT_LIST, payload: snapArray });

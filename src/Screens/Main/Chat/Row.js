@@ -6,17 +6,20 @@ import PropTypes from 'prop-types';
 
 class Row extends Component {
   renderView() {
-    const { type, message } = this.props;
+    const { type, message, timeStamp } = this.props;
+    console.log(timeStamp);
     if (type === 'send') {
       return (
-        <View style={styles.containerSender}>
-          <Text style={styles.sender}>{message}</Text>
+        <View style={[styles.containerSender, styles.sender]}>
+          <Text>{message}</Text>
+          <Text style={styles.timeStamp}>{timeStamp}</Text>
         </View>
       );
     }
     return (
       <View style={styles.containerReceiver}>
         <Text style={styles.receiver}>{message}</Text>
+        <Text style={styles.timeStamp}>{timeStamp}</Text>
       </View>
     );
   }
@@ -31,6 +34,7 @@ class Row extends Component {
 Row.propTypes = {
   message: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  timeStamp: PropTypes.string.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -55,6 +59,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#f7f7f7',
     padding: 15,
     elevation: 1,
+  },
+  timeStamp: {
+    color: 'grey',
+    fontSize: 10,
   },
 });
 
