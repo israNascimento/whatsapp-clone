@@ -13,6 +13,8 @@ import FormSignup from './src/Screens/FormSignup';
 import MainScreen from './src/Screens/Main';
 import Chat from './src/Screens/Main/Chat';
 
+import { PRIMARY_COLOR } from './src/Screens/styles';
+
 YellowBox.ignoreWarnings(['Remote debugger']);
 YellowBox.ignoreWarnings(['Setting a timer']);
 YellowBox.ignoreWarnings(['[2019']);
@@ -38,7 +40,7 @@ const RootStack = createStackNavigator(
     initialRouteName: 'Home',
     defaultNavigationOptions: () => ({
       headerStyle: {
-        backgroundColor: '#115E54',
+        backgroundColor: PRIMARY_COLOR,
       },
       headerTintColor: 'white',
     }),

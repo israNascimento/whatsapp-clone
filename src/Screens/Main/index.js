@@ -4,6 +4,7 @@ import { createMaterialTopTabNavigator } from 'react-navigation';
 import ChatList from './ChatList';
 import Contacts from './Contact';
 import HeaderRight from './HeaderRight';
+import { PRIMARY_COLOR } from '../styles';
 
 export default createMaterialTopTabNavigator(
   {
@@ -14,7 +15,7 @@ export default createMaterialTopTabNavigator(
     navigationOptions: () => ({
       title: 'Whatsapp',
       headerStyle: {
-        backgroundColor: '#115E54',
+        backgroundColor: PRIMARY_COLOR,
         elevation: 0,
       },
       headerLeft: null,
@@ -27,7 +28,7 @@ export default createMaterialTopTabNavigator(
         fontWeight: 'bold',
       },
       style: {
-        backgroundColor: '#115E54',
+        backgroundColor: PRIMARY_COLOR,
       },
     },
   },

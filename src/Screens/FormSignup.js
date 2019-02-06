@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import defaultStyle from './styles';
+import defaultStyle, { PRIMARY_COLOR } from './styles';
 import * as Actions from '../Actions/AuthAction';
 
 class FormCadastro extends Component {
@@ -25,7 +25,7 @@ class FormCadastro extends Component {
     return (
       <Button
         title="Cadastrar"
-        color="#115E54"
+        color={PRIMARY_COLOR}
         onPress={() => this.cadastro()}
       />
     );

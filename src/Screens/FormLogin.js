@@ -6,7 +6,7 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import defaultStyle from './styles';
+import defaultStyle, { PRIMARY_COLOR } from './styles';
 import { changeEmail, changePass, loginAction } from '../Actions/AuthAction';
 import Touchable from './Widgets/Touchable';
 
@@ -24,7 +24,7 @@ class FormLogin extends Component {
       );
     }
     return (
-      <Button title="Entrar" color="#115E54" onPress={() => this.login()} />
+      <Button title="Entrar" color={PRIMARY_COLOR} onPress={() => this.login()} />
     );
   }
 

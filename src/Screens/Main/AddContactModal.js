@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import {
   changeModalVisibilityAction, changeContactTextAction, addContactAction,
 } from '../../Actions/AddContactAction';
-import defaultStyles from '../styles';
+import defaultStyles, { PRIMARY_COLOR } from '../styles';
 
 const AddContactModal = (props) => {
   const {
@@ -35,7 +35,7 @@ const AddContactModal = (props) => {
           <Text style={defaultStyles.errorMessage}>{errorText}</Text>
           <Button
             title="Adicionar"
-            color="#115E54"
+            color={PRIMARY_COLOR}
             onPress={() => addContact(addContactText)}
           />
         </View>

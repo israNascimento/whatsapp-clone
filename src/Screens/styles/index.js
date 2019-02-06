@@ -15,4 +15,6 @@ const styles = StyleSheet.create(
   },
 );
 
+export const PRIMARY_COLOR = '#115E54';
+
 export default styles;
