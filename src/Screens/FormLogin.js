@@ -24,7 +24,11 @@ class FormLogin extends Component {
       );
     }
     return (
-      <Button title="Entrar" color={PRIMARY_COLOR} onPress={() => this.login()} />
+      <Button
+        title="Entrar"
+        color={PRIMARY_COLOR}
+        onPress={() => this.login()}
+      />
     );
   }
 
