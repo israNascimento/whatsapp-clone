@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Header } from 'react-navigation';
 import {
-  View, TextInput, StyleSheet, Button, KeyboardAvoidingView, FlatList,
+  View, TextInput, StyleSheet, Image, KeyboardAvoidingView, FlatList,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import defaultStyle from '../../styles';
+import defaultStyle, { PRIMARY_COLOR } from '../../styles';
 import {
   changeMessageTextAction, sendMessageAction, fetchMessagesAction,
 } from '../../../Actions/ChatAction';
 import Row from './Row';
+import Touchable from '../../Widgets/Touchable';
 
 class Chat extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class Chat extends Component {
   render() {
     const { chatTextInput, changeText, navigation } = this.props;
     const { name } = navigation.state.params;
+    console.log(styles.sendButton);
     return (
       <KeyboardAvoidingView
         keyboardVerticalOffset={Header.HEIGHT + 25}
@@ -55,13 +57,21 @@ class Chat extends Component {
               value={chatTextInput}
               onChangeText={text => changeText(text)}
               style={[defaultStyle.input, styles.textInput]}
+              underlineColorAndroid="transparent"
               placeholder="Digite sua mensagem... "
             />
-            <Button
-              title="Enviar"
-              color="#115E54"
+            <Touchable
               onPress={() => this.sendMessage()}
-            />
+            >
+              <View
+                style={styles.sendButton}
+              >
+                <Image
+                  style={styles.image}
+                  source={require('../../../imgs/send.png')}
+                />
+              </View>
+            </Touchable>
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -86,14 +96,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
   },
   inputContainer: {
-    margin: 5,
+    margin: 10,
     flexDirection: 'row',
-    height: 45,
+    height: 50,
   },
   textInput: {
     backgroundColor: 'white',
     flex: 1,
     marginRight: 10,
+    padding: 10,
+    fontSize: 16,
+    borderRadius: 23,
+  },
+  image: {
+    width: 50,
+    height: 50,
+  },
+  sendButton: {
+    backgroundColor: PRIMARY_COLOR,
+    borderRadius: 25,
   },
 });
 
