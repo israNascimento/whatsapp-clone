@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 class Row extends Component {
   renderView() {
     const { type, message, timeStamp } = this.props;
-    console.log(timeStamp);
     if (type === 'send') {
       return (
         <View style={[styles.containerSender, styles.sender]}>
