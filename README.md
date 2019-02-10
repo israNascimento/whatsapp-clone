@@ -5,6 +5,8 @@ Feito com base no curso [Desenvolvedor Multiplataforma Android/IOS com React e R
 
 #### TO DO LIST:
 - [ ] - Perfil
-- [ ] - Localização
-- [ ] - Notificação
-- [ ] - Aceitar convites
+    - [ ] - Foto
+    - [ ] - Localização
+    - [ ] - Ver perfil
+- [ ] - Notificação ao receber mensagem
+- [ ] - Solicitação de amizade
